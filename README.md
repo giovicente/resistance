@@ -8,7 +8,29 @@ O sistema também oferece um mecanismo de reportes de traição.
 ___
 
 ## Documentação dos endpoints
- 
+
+### POST /itens
+Cadastra os itens em um repositório, que será usado para calcular as pontuações dos
+rebeldes de acordo com o valor de cada item.
+
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/itens
+
+**Exemplo de Request Body**
+```json
+{
+    "nome": "ARMA",
+    "pontos": 4
+}
+```
+**Response 201 - item cadastrado com sucesso, dados do cadastro retornados**
+```json
+{
+    "id": 1,
+    "nome": "ARMA",
+    "pontos": 4
+}
+```
+--- 
 ### POST /rebeldes
 Efetua o cadastro de um rebelde à rede.
 
@@ -60,59 +82,50 @@ Efetua o cadastro de um rebelde à rede.
         {
             "id": 2,
             "quantidade": 1,
-            "id_item": 1,
+            "id_item": 4,
             "id_rebelde": 2,
-            "nome_item": "ARMA"
+            "nome_item": "COMIDA"
         }
     ],
     "traidor": false,
     "quantidade_denuncias_traicao": 0,
-    "pontuacao_total": 8
-}
-```
-**Response 400 - falha no cadastro: obrigatório informar o nome, gênero e localização**
-```json
-{
-    "timestamp": "2021-06-26T14:38:16.369+0000",
-    "status": 400,
-    "error": "Bad Request",
-    "message": "O preenchimento do nome é obrigatório",
-    "path": "/"
-}
-```
-```json
-{
-    "timestamp": "2021-06-26T14:38:16.369+0000",
-    "status": 400,
-    "error": "Bad Request",
-    "message": "O preenchimento do gênero é obrigatório",
-    "path": "/"
-}
-```
-```json
-{
-    "timestamp": "2021-06-26T14:38:16.369+0000",
-    "status": 400,
-    "error": "Bad Request",
-    "message": "O preenchimento da localização é obrigatório",
-    "path": "/"
+    "pontuacao_total": 5
 }
 ```
 ---
-### PUT /rebeldes/{id_rebelde}
+### PUT /localizacoes/{id}
 Atualiza a localização de um rebelde de acordo com o seu identificador. Na rota abaixo,
-estamos atualizando a localização do rebelde cujo id é igual a 1.
+estamos atualizando a localização de id = 1 e do rebelde cujo id é igual a 1.
 
-*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/rebeldes/1
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/localizacoes/1
 
 **Exemplo de Request Body**
 ```json
 {
-  "localizacao": {
-    "latitude": 40.366633,
-    "longitude": 74.640832,
-    "nome_base_galaxia": "Dagobah"   
-  }
+  "id_rebelde": 1,
+  "latitude": 40.366633,
+  "longitude": 74.640832,
+  "nome_base_galaxia": "Dagobah"   
 }
 ```
-**Response 204 (No Content) - localização alterada com sucesso**
+**Response 200 (OK) - localização alterada com sucesso**
+```json
+{
+    "id": 1,
+    "latitude": 40.366633,
+    "longitude": 74.640832,
+    "id_rebelde": 1,
+    "nome_base_galaxia": "Dagobah"
+}
+```
+**Response 404 - id da localização não encontrado na base**
+
+Na mensagem de retorno, o path contém o id que foi informado na entrada.
+```json
+{
+    "timestamp": "2021-06-27T13:15:41.670+00:00",
+    "status": 404,
+    "error": "Not Found",
+    "path": "/localizacoes/1"
+}
+```

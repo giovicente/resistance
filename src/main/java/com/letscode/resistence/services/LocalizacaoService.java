@@ -31,4 +31,14 @@ public class LocalizacaoService {
         Localizacao localizacaoResponse = localizacaoRepository.save(localizacao);
         return localizacaoResponse;
     }
+
+    public Localizacao atualizarLocalizacao(long idLocalizacao, Localizacao localizacao) {
+        if (localizacaoRepository.existsById(idLocalizacao)) {
+            localizacao.setId(idLocalizacao);
+            cadastrarLocalizacao(localizacao, localizacao.getIdRebelde());
+            return localizacao;
+        }
+
+        throw new RuntimeException("Localização inexistente");
+    }
 }
