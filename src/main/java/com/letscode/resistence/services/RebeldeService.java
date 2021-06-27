@@ -1,5 +1,6 @@
 package com.letscode.resistence.services;
 
+import com.letscode.resistence.mappers.MapperRebelde;
 import com.letscode.resistence.models.Inventario;
 import com.letscode.resistence.models.Rebelde;
 import com.letscode.resistence.repositories.RebeldeRepository;
@@ -22,6 +23,10 @@ public class RebeldeService {
     @Autowired
     private InventarioService inventarioService;
 
+    private MapperRebelde mapperRebelde;
+
+    private static final int QUANTIDADE_DENUNCIAS_TRAIDOR = 3;
+
     public Rebelde cadastrarRebelde(Rebelde rebelde) {
         Rebelde rebeldeResponse = rebeldeRepository.save(rebelde);
         return rebeldeResponse;
@@ -42,5 +47,35 @@ public class RebeldeService {
 
     public Optional<Rebelde> buscarRebeldePorId(Long idRebelde) {
         return rebeldeRepository.findById(idRebelde);
+    }
+
+    public Iterable<Rebelde> consultarListaDeRebeldes() {
+        Iterable<Rebelde> rebeldes = rebeldeRepository.findAll();
+        return rebeldes;
+    }
+
+    public Rebelde receberDenunciaTraicao(long idRebelde) {
+        Optional<Rebelde> rebeldeOptional = rebeldeRepository.findById(idRebelde);
+
+        if (rebeldeOptional.isPresent()) {
+            mapperRebelde = new MapperRebelde();
+            Rebelde rebeldeReportado = mapperRebelde.criarRebeldeReportado(rebeldeOptional);
+
+            rebeldeReportado.setId(idRebelde);
+
+            int quantidadeDenunciasTraicao = rebeldeReportado.getQuantidadeDenunciasTraicao();
+            quantidadeDenunciasTraicao++;
+            rebeldeReportado.setQuantidadeDenunciasTraicao(quantidadeDenunciasTraicao);
+
+            if (quantidadeDenunciasTraicao == QUANTIDADE_DENUNCIAS_TRAIDOR) {
+                rebeldeReportado.setTraidor(true);
+            }
+
+            Rebelde rebeldeResponse = cadastrarRebelde(rebeldeReportado);
+
+            return rebeldeResponse;
+        }
+
+        throw new RuntimeException("Rebelde não encontrado");
     }
 }

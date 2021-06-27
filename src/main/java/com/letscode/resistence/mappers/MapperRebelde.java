@@ -7,6 +7,7 @@ import com.letscode.resistence.models.Localizacao;
 import com.letscode.resistence.models.Rebelde;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MapperRebelde {
 
@@ -40,5 +41,18 @@ public class MapperRebelde {
         createRebeldePostResponse.setInventario(inventarioList);
 
         return createRebeldePostResponse;
+    }
+
+    public Rebelde criarRebeldeReportado(Optional<Rebelde> rebeldeOptional) {
+        Rebelde rebeldeReportado = new Rebelde();
+
+        rebeldeReportado.setId(rebeldeOptional.get().getId());
+        rebeldeReportado.setNome(rebeldeOptional.get().getNome());
+        rebeldeReportado.setGenero(rebeldeOptional.get().getGenero());
+        rebeldeReportado.setTraidor(rebeldeOptional.get().isTraidor());
+        rebeldeReportado.setQuantidadeDenunciasTraicao(rebeldeOptional.get().getQuantidadeDenunciasTraicao());
+        rebeldeReportado.setPontuacaoTotal(rebeldeOptional.get().getPontuacaoTotal());
+
+        return rebeldeReportado;
     }
 }

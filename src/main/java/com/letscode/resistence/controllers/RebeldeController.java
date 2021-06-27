@@ -10,11 +10,10 @@ import com.letscode.resistence.services.InventarioService;
 import com.letscode.resistence.services.LocalizacaoService;
 import com.letscode.resistence.services.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -49,9 +48,28 @@ public class RebeldeController {
         List<Inventario> inventarioList = inventarioService.cadastrarInventario(rebeldeResponse.getId(),
                 createRebeldePostRequest.getInventario());
 
-        CreateRebeldePostResponse response = mapperRebelde.converterParaCreateRebeldePostResponse(rebeldeResponse, localizacaoResponse, inventarioList);
-        response.setPontuacaoTotal(rebeldeService.atualizarPontuacao(response.getId(), rebeldeResponse, response.getInventario()));
+        CreateRebeldePostResponse response = mapperRebelde
+                .converterParaCreateRebeldePostResponse(rebeldeResponse, localizacaoResponse, inventarioList);
+
+        response.setPontuacaoTotal
+                (rebeldeService.atualizarPontuacao(response.getId(), rebeldeResponse, response.getInventario()));
 
         return ResponseEntity.status(201).body(response);
+    }
+
+    @GetMapping
+    public Iterable<Rebelde> getRebeldes() {
+        Iterable<Rebelde> rebeldes = rebeldeService.consultarListaDeRebeldes();
+        return rebeldes;
+    }
+
+    @PutMapping("/reportar/{id}")
+    public ResponseEntity<Rebelde> denunciarTraicao(@PathVariable(name = "id") long id) {
+        try {
+            Rebelde rebeldeResponse = rebeldeService.receberDenunciaTraicao(id);
+            return ResponseEntity.status(200).body(rebeldeResponse);
+        } catch (RuntimeException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage());
+        }
     }
 }

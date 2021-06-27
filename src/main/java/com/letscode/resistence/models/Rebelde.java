@@ -1,5 +1,6 @@
 package com.letscode.resistence.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.letscode.resistence.enums.GeneroEnum;
 
 import javax.persistence.*;
@@ -16,10 +17,13 @@ public class Rebelde {
 
     private GeneroEnum genero;
 
+    @JsonProperty("quantidade_denuncias_traicao")
     private int quantidadeDenunciasTraicao;
 
+    @JsonProperty("traidor")
     private boolean isTraidor;
 
+    @JsonProperty("pontuacao_total")
     private int pontuacaoTotal;
 
     // Construtor
