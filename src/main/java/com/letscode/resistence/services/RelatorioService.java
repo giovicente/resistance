@@ -1,7 +1,10 @@
 package com.letscode.resistence.services;
 
 
+import com.letscode.resistence.models.Inventario;
 import com.letscode.resistence.models.Rebelde;
+import com.letscode.resistence.models.RelatorioMediaItens;
+import com.letscode.resistence.repositories.InventarioRepository;
 import com.letscode.resistence.repositories.RebeldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,9 @@ public class RelatorioService {
      */
     @Autowired
     RebeldeRepository rebeldeRepository;
+
+    @Autowired
+    InventarioRepository inventarioRepository;
 
     public double obterPercentualTraidores() {
         int countTotal = 0, countTraidores = 0;
@@ -64,5 +70,40 @@ public class RelatorioService {
         }
 
         return countPontosPerdidos;
+    }
+
+    public RelatorioMediaItens calculaMediaItens() {
+        int countRebeldes = 0;
+
+        double countArma = 0, countMunicao = 0, countAgua = 0, countComida = 0;
+
+        Iterable<Rebelde> rebeldes = rebeldeRepository.findAll();
+        for (Rebelde rebelde: rebeldes) countRebeldes++;
+
+        Iterable<Inventario> inventario = inventarioRepository.findAll();
+        for (Inventario inventarioIterable: inventario) {
+             switch ((int) inventarioIterable.getIdItem()) {
+                case 1:
+                    countArma += inventarioIterable.getQuantidade();
+                    break;
+                case 2:
+                    countMunicao += inventarioIterable.getQuantidade();
+                    break;
+                case 3:
+                    countAgua += inventarioIterable.getQuantidade();
+                    break;
+                case 4:
+                    countComida += inventarioIterable.getQuantidade();
+                    break;
+            }
+        }
+
+        RelatorioMediaItens relatorioMediaItensResponse = new RelatorioMediaItens();
+        relatorioMediaItensResponse.setMediaArmas(countArma / countRebeldes);
+        relatorioMediaItensResponse.setMediaMunicao(countMunicao / countRebeldes);
+        relatorioMediaItensResponse.setMediaAgua(countAgua / countRebeldes);
+        relatorioMediaItensResponse.setMediaComida(countComida / countRebeldes);
+
+        return relatorioMediaItensResponse;
     }
 }

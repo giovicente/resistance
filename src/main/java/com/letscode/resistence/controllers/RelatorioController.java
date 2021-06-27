@@ -1,6 +1,7 @@
 package com.letscode.resistence.controllers;
 
 import com.letscode.resistence.models.RelatorioContagemPontosPeridos;
+import com.letscode.resistence.models.RelatorioMediaItens;
 import com.letscode.resistence.models.RelatorioPercentualRebeldes;
 import com.letscode.resistence.models.RelatorioPercentualTraidor;
 import com.letscode.resistence.services.RelatorioService;
@@ -44,4 +45,9 @@ public class RelatorioController {
         return relatorioContagemPontosPeridos;
     }
 
+    @GetMapping("/media_itens")
+    public RelatorioMediaItens getMediaItens() {
+        RelatorioMediaItens relatorioMediaItens = relatorioService.calculaMediaItens();
+        return relatorioMediaItens;
+    }
 }
