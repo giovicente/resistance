@@ -78,4 +78,19 @@ public class RebeldeService {
 
         throw new RuntimeException("Rebelde não encontrado");
     }
+
+    public boolean verificaTraidor(long idRebeldeNegocainte1, long idRebeldeNegocainte2) {
+        Optional<Rebelde> rebeldeOptional1 = rebeldeRepository.findById(idRebeldeNegocainte1);
+        Optional<Rebelde> rebeldeOptional2 = rebeldeRepository.findById(idRebeldeNegocainte2);
+
+        if (rebeldeOptional1.isPresent() && rebeldeOptional2.isPresent()) {
+            if (rebeldeOptional1.get().isTraidor() || rebeldeOptional2.get().isTraidor()) {
+                return false;
+            }
+        } else {
+            throw new RuntimeException("Rebelde não encontrado");
+        }
+
+        return true;
+    }
 }

@@ -135,10 +135,10 @@ estamos atualizando a localização de id = 1 e do rebelde cujo id é igual a 1.
 **Exemplo de Request Body**
 ```json
 {
-  "id_rebelde": 1,
-  "latitude": 40.366633,
-  "longitude": 74.640832,
-  "nome_base_galaxia": "Dagobah"   
+    "id_rebelde": 1,
+    "latitude": 40.366633,
+    "longitude": 74.640832,
+    "nome_base_galaxia": "Dagobah"   
 }
 ```
 **Response 200 (OK) - localização alterada com sucesso**
@@ -201,4 +201,29 @@ Na mensagem de retorno, o path contém o id que foi informado na entrada.
     "status": 404,
     "error": "Not Found",
     "path": "/rebeldes/reportar/1"
+}
+
+```
+---
+### GET relatorios/traidores
+Retorna o percentual de traidores obtidos na base.
+
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/traidores
+
+**Response 200 (OK) - Relatório retornado com sucesso**
+```json
+{
+    "percentual_traidores": 25.0
+}
+```
+
+### GET relatorios/rebeldes
+Retorna o percentual de rebeldes obtidos na base.
+
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/rebeldes
+
+**Response 200 (OK) - Relatório retornado com sucesso**
+```json
+{
+    "percentual_rebeldes": 75.0
 }
