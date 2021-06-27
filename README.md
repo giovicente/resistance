@@ -240,3 +240,18 @@ Retorna a quantidade de pontos perdidos devido à rebeldes traidores.
     "pontos_perdidos_traicao": 3
 }
 ```
+
+### GET relatorios/media_itens
+Retorna a média de itens por rebelde.
+
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/media_itens
+
+**Response 200 (OK) - Relatório retornado com sucesso**
+```json
+{
+    "media_armas": 0.0,
+    "media_municao": 1.0,
+    "media_agua": 0.5,
+    "media_comida": 0.5
+}
+```
