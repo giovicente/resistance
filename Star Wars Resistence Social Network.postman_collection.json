@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "8545102a-441d-4f03-8242-d4cf896392f9",
+		"name": "Star Wars Resistence Social Network",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cadastro Item 1 - ARMA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"ARMA\",\r\n    \"pontos\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/itens",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Item 2 - MUNICAO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"MUNICAO\",\r\n    \"pontos\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/itens",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Item 3 - AGUA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"AGUA\",\r\n    \"pontos\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/itens",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Item 4 - COMIDA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"COMIDA\",\r\n    \"pontos\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/itens",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"itens"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Rebelde 1 - Jyn Erso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Jyn Erso\",\r\n  \"genero\": \"FEMININO\",\r\n  \"localizacao\": {\r\n    \"latitude\": 42.443087,\r\n    \"longitude\": 76.488707,\r\n    \"nome_base_galaxia\": \"Jedha\"   \r\n  },\r\n  \"inventario\": [\r\n    {\r\n      \"nome_item\": \"AGUA\",\r\n      \"quantidade\": 2\r\n    },\r\n    {\r\n      \"nome_item\": \"COMIDA\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Rebelde 2 - Han Solo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Han Solo\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"localizacao\": {\r\n    \"latitude\": 41.466087,\r\n    \"longitude\": 73.579607,\r\n    \"nome_base_galaxia\": \"Tatooine\"   \r\n  },\r\n  \"inventario\": [\r\n    {\r\n      \"nome_item\": \"MUNICAO\",\r\n      \"quantidade\": 2\r\n    },\r\n    {\r\n      \"nome_item\": \"COMIDA\",\r\n      \"quantidade\": 1\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Rebelde 3 - Senador Palpatine",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Senador Palpatine\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"localizacao\": {\r\n    \"latitude\": 40.136087,\r\n    \"longitude\": 70.579707,\r\n    \"nome_base_galaxia\": \"Naboo\"   \r\n  },\r\n  \"inventario\": [\r\n    {\r\n      \"nome_item\": \"MUNICAO\",\r\n      \"quantidade\": 1\r\n    } \r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastro Rebelde 4 - Poe Dameron",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Poe Dameron\",\r\n  \"genero\": \"MASCULINO\",\r\n  \"localizacao\": {\r\n    \"latitude\": 44.198087,\r\n    \"longitude\": 78.789204,\r\n    \"nome_base_galaxia\": \"Yavin 4\"   \r\n  },\r\n  \"inventario\": [\r\n    {\r\n      \"nome_item\": \"MUNICAO\",\r\n      \"quantidade\": 1\r\n    } \r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Localização",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_rebelde\": 1,\r\n    \"latitude\": 40.366633,\r\n    \"longitude\": 74.640832,\r\n    \"nome_base_galaxia\": \"Dagobah\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/localizacoes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"localizacoes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Rebeldes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Denunciar Rebeldes Traidores",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/rebeldes/reportar/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"rebeldes",
+						"reportar",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negociar Itens",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": 5,\r\n        \"quantidade\": 1,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 3,\r\n        \"nome_item\": \"MUNICAO\"\r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"quantidade\": 1,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 4,\r\n        \"nome_item\": \"MUNICAO\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/inventario/negociar/3/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"inventario",
+						"negociar",
+						"3",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relatório Traidores",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/relatorios/traidores",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"relatorios",
+						"traidores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relatório Rebeldes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/relatorios/rebeldes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"relatorios",
+						"rebeldes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relatório Pontos Perdidos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/relatorios/pontos_perdidos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"relatorios",
+						"pontos_perdidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Relatório Média de Itens",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/relatorios/media_itens",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"relatorios",
+						"media_itens"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
