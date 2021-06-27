@@ -30,6 +30,8 @@ public class RelatorioService {
             countTotal++;
         }
 
+        if (countTotal == 0) return 0;
+
         return (countTraidores * 100) / countTotal;
     }
 
@@ -45,6 +47,22 @@ public class RelatorioService {
             countTotal++;
         }
 
+        if (countTotal == 0) return 0;
+
         return (countRebeldes * 100) / countTotal;
+    }
+
+    public int calculaPontosPerdidos() {
+        int countPontosPerdidos = 0;
+
+        Iterable<Rebelde> rebeldes = rebeldeRepository.findAll();
+
+        for (Rebelde rebelde: rebeldes) {
+            if (rebelde.isTraidor()){
+                countPontosPerdidos += rebelde.getPontuacaoTotal();
+            }
+        }
+
+        return countPontosPerdidos;
     }
 }

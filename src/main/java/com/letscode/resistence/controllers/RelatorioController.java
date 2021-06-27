@@ -1,5 +1,6 @@
 package com.letscode.resistence.controllers;
 
+import com.letscode.resistence.models.RelatorioContagemPontosPeridos;
 import com.letscode.resistence.models.RelatorioPercentualRebeldes;
 import com.letscode.resistence.models.RelatorioPercentualTraidor;
 import com.letscode.resistence.services.RelatorioService;
@@ -34,4 +35,13 @@ public class RelatorioController {
 
         return relatorioPercentualRebeldes;
     }
+
+    @GetMapping("/pontos_perdidos")
+    public RelatorioContagemPontosPeridos getPontosPerdidos() {
+        RelatorioContagemPontosPeridos relatorioContagemPontosPeridos = new RelatorioContagemPontosPeridos();
+        relatorioContagemPontosPeridos.setPontosPerdidos(relatorioService.calculaPontosPerdidos());
+
+        return relatorioContagemPontosPeridos;
+    }
+
 }

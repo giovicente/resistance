@@ -227,3 +227,16 @@ Retorna o percentual de rebeldes obtidos na base.
 {
     "percentual_rebeldes": 75.0
 }
+```
+
+### GET relatorios/pontos_perdidos
+Retorna a quantidade de pontos perdidos devido à rebeldes traidores.
+
+*Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/pontos_perdidos
+
+**Response 200 (OK) - Relatório retornado com sucesso**
+```json
+{
+    "pontos_perdidos_traicao": 3
+}
+```

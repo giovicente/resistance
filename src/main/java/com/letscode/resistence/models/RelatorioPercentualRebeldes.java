@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class RelatorioPercentualRebeldes {
 
     @JsonProperty("percentual_rebeldes")
-    double percentual;
+    private double percentual;
 
     public RelatorioPercentualRebeldes() { }
 
