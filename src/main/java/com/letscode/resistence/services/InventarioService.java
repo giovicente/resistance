@@ -3,7 +3,6 @@ package com.letscode.resistence.services;
 import com.letscode.resistence.models.Inventario;
 import com.letscode.resistence.models.Item;
 import com.letscode.resistence.repositories.InventarioRepository;
-import com.letscode.resistence.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +20,13 @@ public class InventarioService {
     InventarioRepository inventarioRepository;
 
     @Autowired
-    ItemRepository itemRepository;
+    ItemService itemService;
 
     public List<Inventario> cadastrarInventario(long idRebelde, List<Inventario> inventarioList) {
 
         for (int i = 0; i < inventarioList.size(); i++) {
             inventarioList.get(i).setIdRebelde(idRebelde);
-            Optional<Item> itemOptional = itemRepository.findByNome(inventarioList.get(i).getNomeItem());
+            Optional<Item> itemOptional = itemService.buscarItemPorNome(inventarioList.get(i).getNomeItem());
 
             if (itemOptional.isPresent()) {
                 inventarioList.get(i).setIdItem(itemOptional.get().getId());
@@ -43,7 +42,7 @@ public class InventarioService {
         int pontuacao = 0;
 
         for (int i = 0; i < inventarioList.size(); i++) {
-            Optional<Item> itemOptional = itemRepository.findById(inventarioList.get(i).getIdItem());
+            Optional<Item> itemOptional = itemService.buscarItemPorId(inventarioList.get(i).getIdItem());
 
             if (itemOptional.isPresent()) {
                 pontuacao += (itemOptional.get().getPontos() * inventarioList.get(i).getQuantidade());

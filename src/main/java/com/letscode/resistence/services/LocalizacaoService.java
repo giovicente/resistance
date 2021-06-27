@@ -3,7 +3,6 @@ package com.letscode.resistence.services;
 import com.letscode.resistence.models.Localizacao;
 import com.letscode.resistence.models.Rebelde;
 import com.letscode.resistence.repositories.LocalizacaoRepository;
-import com.letscode.resistence.repositories.RebeldeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +19,10 @@ public class LocalizacaoService {
     LocalizacaoRepository localizacaoRepository;
 
     @Autowired
-    RebeldeRepository rebeldeRepository;
+    RebeldeService rebeldeService;
 
     public Localizacao cadastrarLocalizacao(Localizacao localizacao, long idRebelde) {
-        Optional<Rebelde> rebeldeOptional = rebeldeRepository.findById(idRebelde);
+        Optional<Rebelde> rebeldeOptional = rebeldeService.buscarRebeldePorId(idRebelde);
 
         if (rebeldeOptional.isPresent()) {
             localizacao.setIdRebelde(rebeldeOptional.get().getId());

@@ -2,14 +2,12 @@ package com.letscode.resistence.services;
 
 import com.letscode.resistence.models.Inventario;
 import com.letscode.resistence.models.Rebelde;
-import com.letscode.resistence.repositories.LocalizacaoRepository;
 import com.letscode.resistence.repositories.RebeldeRepository;
-import javassist.NotFoundException;
-import org.omg.SendingContext.RunTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RebeldeService {
@@ -20,9 +18,6 @@ public class RebeldeService {
      */
     @Autowired
     private RebeldeRepository rebeldeRepository;
-
-    @Autowired
-    private LocalizacaoRepository localizacaoRepository;
 
     @Autowired
     private InventarioService inventarioService;
@@ -43,5 +38,9 @@ public class RebeldeService {
         }
 
         return 0;
+    }
+
+    public Optional<Rebelde> buscarRebeldePorId(Long idRebelde) {
+        return rebeldeRepository.findById(idRebelde);
     }
 }

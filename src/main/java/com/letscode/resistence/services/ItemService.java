@@ -5,6 +5,8 @@ import com.letscode.resistence.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ItemService {
 
@@ -20,4 +22,11 @@ public class ItemService {
         return itemResponse;
     }
 
+    Optional<Item> buscarItemPorId (long idItem) {
+        return itemRepository.findById(idItem);
+    }
+
+    Optional<Item> buscarItemPorNome (String nome) {
+        return itemRepository.findByNome(nome);
+    }
 }
