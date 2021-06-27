@@ -1,6 +1,5 @@
 package com.letscode.resistence.services;
 
-import com.letscode.resistence.mappers.MapperInventario;
 import com.letscode.resistence.models.Inventario;
 import com.letscode.resistence.models.Item;
 import com.letscode.resistence.repositories.InventarioRepository;
@@ -26,7 +25,7 @@ public class InventarioService {
     @Autowired
     RebeldeService rebeldeService;
 
-    private MapperInventario mapperInventario;
+    private List<Inventario> inventarioNegociante1, inventarioNegociante2;
 
     public List<Inventario> cadastrarInventario(long idRebelde, List<Inventario> inventarioList) {
 
@@ -59,52 +58,42 @@ public class InventarioService {
     }
 
     public void dividirItensNegociacao(long idRebelde1, long idRebelde2, List<Inventario> inventarioList) {
-        List<Inventario> inventarioNegociante1 = null, inventarioNegociante2 = null;
-        mapperInventario = new MapperInventario();
 
         for (int i = 0; i < inventarioList.size(); i++) {
-            Optional<Inventario> inventarioOptional = inventarioRepository
-                    .findByIdAndIdRebelde(inventarioList.get(i).getId(), inventarioList.get(i).getIdRebelde());
-            Inventario inventarioObjeto = mapperInventario.converterInventario(inventarioOptional);
-
             // Dividindo os itens da negociação em duas listas, uma para cada id de Rebelde
-            if (inventarioObjeto.getIdRebelde() == idRebelde1) {
-                inventarioNegociante1.add(inventarioObjeto);
+            if (inventarioList.get(i).getIdRebelde() == idRebelde1) {
+                inventarioNegociante1.add(inventarioList.get(i));
             } else {
-                if (inventarioObjeto.getIdRebelde() == idRebelde2) {
-                    inventarioNegociante2.add(inventarioObjeto);
+                if (inventarioList.get(i).getIdRebelde() == idRebelde2) {
+                    inventarioNegociante2.add(inventarioList.get(i));
                 } else {
                     throw new RuntimeException("Item não pertence aos rebeldes da negociação");
                 }
             }
         }
 
-        validarPontuacoes(idRebelde1, idRebelde2,inventarioNegociante1, inventarioNegociante2);
+        validarPontuacoes(inventarioNegociante1, inventarioNegociante2);
+        atualizarInventarios(idRebelde1, idRebelde2, inventarioNegociante1, inventarioNegociante2);
     }
 
-    public void validarPontuacoes(long idRebelde1, long idRebelde2, List<Inventario> inventarioNegociante1, List<Inventario> inventarioNegociante2) {
+    public void validarPontuacoes(List<Inventario> inventarioNegociante1, List<Inventario> inventarioNegociante2) {
         int pontuacaoInventario1 = calcularPontuacao(inventarioNegociante1);
         int pontuacaoInventario2 = calcularPontuacao(inventarioNegociante2);
 
         if (pontuacaoInventario1 != pontuacaoInventario2) {
             throw new RuntimeException("Negociação não permitida. Número de pontos não é exatamente igual");
         }
-
-        atualizarInventarios(idRebelde1, idRebelde2, inventarioNegociante1, inventarioNegociante2);
     }
 
     public void atualizarInventarios(long idRebelde1, long idRebelde2, List<Inventario> inventarioNegociante1, List<Inventario> inventarioNegociante2) {
 
         for (int i = 0; i < inventarioNegociante1.size(); i++) {
             inventarioNegociante1.get(i).setIdRebelde(idRebelde2);
+            inventarioRepository.save(inventarioNegociante1.get(i));
         }
 
         for (int i = 0; i < inventarioNegociante2.size(); i++) {
-            inventarioNegociante2.get(i).setIdRebelde(idRebelde1);
+            inventarioRepository.save(inventarioNegociante2.get(i));
         }
-
-        List<Inventario> inventarioCadasterado1 = cadastrarInventario(idRebelde2, inventarioNegociante1);
-        List<Inventario> inventarioCadasterado2 = cadastrarInventario(idRebelde1, inventarioNegociante2);
-
     }
 }

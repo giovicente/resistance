@@ -273,7 +273,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/rebeldes/reportar/3",
+					"raw": "localhost:8080/rebeldes/reportar/1",
 					"host": [
 						"localhost"
 					],
@@ -281,7 +281,7 @@
 					"path": [
 						"rebeldes",
 						"reportar",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -294,7 +294,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    {\r\n        \"id\": 5,\r\n        \"quantidade\": 1,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 3,\r\n        \"nome_item\": \"MUNICAO\"\r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"quantidade\": 1,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 4,\r\n        \"nome_item\": \"MUNICAO\"\r\n    }\r\n]",
+					"raw": "[\r\n    {\r\n        \"id\": 5,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 3,\r\n        \"nome_item\": \"MUNICAO\",\r\n        \"quantidade\": 1   \r\n    },\r\n    {\r\n        \"id\": 6,\r\n        \"id_item\": 2,\r\n        \"id_rebelde\": 4,\r\n        \"nome_item\": \"MUNICAO\",\r\n        \"quantidade\": 1       \r\n    }\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"

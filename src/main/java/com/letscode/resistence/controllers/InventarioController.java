@@ -25,10 +25,12 @@ public class InventarioController {
     @Autowired
     RebeldeService rebeldeService;
 
-    @PutMapping("/negociar/{id_negociante_1}/{id_negociante_2}")
-    public ResponseEntity atualizarInventarios(@PathVariable (name = "id_negociante_1") long idRebelde1,
-                                               @PathVariable (name = "id_negociante_2") long idRebelde2,
+    @PutMapping("/negociar/{id1}/{id2}")
+    public ResponseEntity atualizarInventarios(@PathVariable (name = "id1") long idRebelde1,
+                                               @PathVariable (name = "id2") long idRebelde2,
                                                @RequestBody List<Inventario> inventarioList) {
+
+
         if (rebeldeService.verificaTraidor(idRebelde1, idRebelde2)) {
             inventarioService.dividirItensNegociacao(idRebelde1, idRebelde2, inventarioList);
         } else {

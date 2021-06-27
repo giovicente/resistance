@@ -9,6 +9,10 @@ O sistema também oferece um mecanismo de reportes de traição.
 ## Sobre os testes
 Por decisão de projeto / timming, inicialmente optei por incluir uma collection do Postman
 para relização dos testes de integração, em detrimento de fazer as (importantíssimas) classes de teste unitário.
+
+A collection está disponível no arquivo ***Star Wars Resistence Social Network.postman_collection.json***
+
+Recomenda-se rodar a collection na ordem, devido uso do H2 para persistir as informações.
 ___
 
 ## Documentação dos endpoints
@@ -205,7 +209,40 @@ Na mensagem de retorno, o path contém o id que foi informado na entrada.
 
 ```
 ---
-### GET relatorios/traidores
+### PUT /inventario/negociar/id1/id2
+Atenção!!! Rota não está funcional - aplicação tomando NullPointerException D:
+
+Faz a negociação de itens entre dois rebeldes. No corpo da requisição são informados os itens que serão trocados e no path
+os id's dos rebeldes que estão negociando.
+
+A API valida se não há traidores na negociação e também se a quantidade de pontos é equivalente. Negociações não podem
+ser feitas por traidores e a pontuação envolvida na troca de itens deve ser idêntica para ambas as partes.
+
+*Rota Request com os id's dos rebeldes (considerando a subida da aplicação na porta 8080)*: localhost:8080/rebeldes/denunciar/1
+
+**Exemplo de Request Body**
+Relação dos itens negociados:
+```json 
+[
+    {
+        "id": 5,
+        "id_item": 2,
+        "id_rebelde": 3,
+        "nome_item": "MUNICAO",
+        "quantidade": 1   
+    },
+    {
+        "id": 6,
+        "id_item": 2,
+        "id_rebelde": 4,
+        "nome_item": "MUNICAO",
+        "quantidade": 1        
+    }
+]
+```
+
+---
+### GET /relatorios/traidores
 Retorna o percentual de traidores obtidos na base.
 
 *Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/traidores
@@ -217,7 +254,7 @@ Retorna o percentual de traidores obtidos na base.
 }
 ```
 
-### GET relatorios/rebeldes
+### GET /relatorios/rebeldes
 Retorna o percentual de rebeldes obtidos na base.
 
 *Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/rebeldes
@@ -229,7 +266,7 @@ Retorna o percentual de rebeldes obtidos na base.
 }
 ```
 
-### GET relatorios/pontos_perdidos
+### GET /relatorios/pontos_perdidos
 Retorna a quantidade de pontos perdidos devido à rebeldes traidores.
 
 *Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/pontos_perdidos
@@ -241,7 +278,7 @@ Retorna a quantidade de pontos perdidos devido à rebeldes traidores.
 }
 ```
 
-### GET relatorios/media_itens
+### GET /relatorios/media_itens
 Retorna a média de itens por rebelde.
 
 *Rota Request (considerando a subida da aplicação na porta 8080)*: localhost:8080/relatorios/media_itens
