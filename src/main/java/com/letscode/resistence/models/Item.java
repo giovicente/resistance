@@ -14,14 +14,10 @@ public class Item {
 
     private String nome;
 
-    private int quantidade;
-
     private int pontos;
 
-    // Construtor
     public Item() { }
 
-    // Getters & Setters
     public long getId() { return id; }
 
     public void setId(long id) { this.id = id; }
@@ -29,10 +25,6 @@ public class Item {
     public String getNome() { return nome; }
 
     public void setNome(String nome) { this.nome = nome; }
-
-    public int getQuantidade() { return quantidade; }
-
-    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
 
     public int getPontos() { return pontos; }
 

@@ -1,34 +1,40 @@
-package com.letscode.resistence.models;
+package com.letscode.resistence.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.letscode.resistence.enums.GeneroEnum;
+import com.letscode.resistence.models.Inventario;
+import com.letscode.resistence.models.Localizacao;
 
-import javax.persistence.*;
 import java.util.List;
 
-@Entity
-public class Rebelde {
+public class CreateRebeldePostResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     private String nome;
 
     private GeneroEnum genero;
 
+    private Localizacao localizacao;
+
+    @JsonProperty("quantidade_denuncias_traicao")
     private int quantidadeDenunciasTraicao;
 
+    @JsonProperty("traidor")
     private boolean isTraidor;
 
+    @JsonProperty("pontuacao_total")
     private int pontuacaoTotal;
 
+    private List<Inventario> inventario;
+
     // Construtor
-    public Rebelde() { }
+    public CreateRebeldePostResponse() { }
 
     // Getters & Setters
-    public Long getId() { return id; }
+    public long getId() { return id; }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(long id) { this.id = id; }
 
     public String getNome() { return nome; }
 
@@ -37,6 +43,10 @@ public class Rebelde {
     public GeneroEnum getGenero() { return genero; }
 
     public void setGenero(GeneroEnum genero) { this.genero = genero; }
+
+    public Localizacao getLocalizacao() { return localizacao; }
+
+    public void setLocalizacao(Localizacao localizacao) { this.localizacao = localizacao; }
 
     public int getQuantidadeDenunciasTraicao() { return quantidadeDenunciasTraicao; }
 
@@ -52,4 +62,7 @@ public class Rebelde {
 
     public void setPontuacaoTotal(int pontuacaoTotal) { this.pontuacaoTotal = pontuacaoTotal; }
 
+    public List<Inventario> getInventario() { return inventario; }
+
+   public void setInventario(List<Inventario> inventario) { this.inventario = inventario; }
 }

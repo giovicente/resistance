@@ -26,20 +26,48 @@ Efetua o cadastro de um rebelde à rede.
   },
   "inventario": [
     {
-      "nome_item": "Agua",
+      "nome_item": "AGUA",
       "quantidade": 2
     },
     {
-      "nome_item": "Comida",
+      "nome_item": "COMIDA",
       "quantidade": 1
     }   
   ]
 }
 ```
-**Response 201 - rebelde cadastrado com sucesso**
+**Response 201 - rebelde cadastrado com sucesso, dados do cadastro retornados**
 ```json
 {
-  "id": 1
+    "id": 1,
+    "nome": "Jyn Erso",
+    "genero": "FEMININO",
+    "localizacao": {
+        "id": 1,
+        "latitude": 42.443087,
+        "longitude": 76.488707,
+        "id_rebelde": 1,
+        "nome_base_galaxia": "Jedha"
+    },
+    "inventario": [
+        {
+            "id": 1,
+            "quantidade": 2,
+            "id_item": 3,
+            "id_rebelde": 1,
+            "nome_item": "AGUA"
+        },
+        {
+            "id": 2,
+            "quantidade": 1,
+            "id_item": 1,
+            "id_rebelde": 2,
+            "nome_item": "ARMA"
+        }
+    ],
+    "traidor": false,
+    "quantidade_denuncias_traicao": 0,
+    "pontuacao_total": 8
 }
 ```
 **Response 400 - falha no cadastro: obrigatório informar o nome, gênero e localização**
